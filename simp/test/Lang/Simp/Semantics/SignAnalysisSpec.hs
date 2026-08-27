@@ -42,18 +42,18 @@ spec = do
                             (8, IGoto 4),
                             (9, IMove r_ret s),
                             (10, IRet) ]
-                expected = Right $ DM.fromList [
-                    (1 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]), 
-                    (2 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Zero), (("x", Top))]), 
-                    (3 , DM.fromList [("b", Top), ("c", Zero),("input", Top),("s", Zero), ("x", Top)]), 
-                    (4 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]),
-                    (5 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]), 
-                    (6 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]), 
-                    (7 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]), 
-                    (8 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]), 
-                    (9 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)]), 
-                    (10 , DM.fromList [("b", Top), ("c", Top), ("input", Top), ("s", Top), ("x", Top)])]
-            
+                expected = 
+                    Right (DM.fromList [
+                        (1 , DM.fromList [("b",Bot),("c",Bot), ("input",Top),("s",Bot),  ("x",Top)]),
+                        (2 , DM.fromList [("b",Bot),("c",Bot), ("input",Top),("s",Zero), ("x",Top)]),
+                        (3,  DM.fromList [("b",Bot),("c",Zero),("input",Top),("s",Zero), ("x",Top)]),
+                        (4,  DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)]),
+                        (5,  DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)]),
+                        (6,  DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)]),
+                        (7,  DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)]),
+                        (8,  DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)]),
+                        (9,  DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)]),
+                        (10, DM.fromList [("b",Top),("c",Top), ("input",Top),("s",Top),  ("x",Top)])])
             in analyze pa  `shouldBe` expected
 
         -- This test case shows that this sign analysis is not accurate enough to detect the negativity of x of return statement
@@ -92,15 +92,16 @@ spec = do
                             (7, IGoto 2),
                             (8, IMove r_ret x),
                             (9, IRet)]
-                expected = Right $ DM.fromList [
-                    (1 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (2 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (3 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (4 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]),
-                    (5 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (6 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (7 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (8 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)]), 
-                    (9 , DM.fromList [("x", Top), ("a", Top), ("b", Top), ("c", Top), ("input", Top)])]
+                expected = 
+                    Right (DM.fromList [
+                        (1 , DM.fromList [("a",Bot),("b",Bot),("c",Bot),("input",Top),("x",Top)]),
+                        (2 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (3 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (4 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (5 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (6 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (7 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (8 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)]),
+                        (9 , DM.fromList [("a",Top),("b",Top),("c",Top),("input",Top),("x",Top)])])
             
             in analyze pa  `shouldBe` expected

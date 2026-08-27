@@ -46,7 +46,7 @@ genMonotoneFunction p =
     let cfg  = buildCFG p
         vars = DS.toList $ DS.fromList (concatMap (allVars . snd) p)
         s0   :: AbstractState
-        s0   = DM.fromList (map (\v -> (v, Top)) vars)
+        s0   = DM.fromList (map (\v -> case v of { "input" -> (v, Top) ; _ -> (v, Bot) }) vars) -- s0 setting all variables to be bot as except for input
         joinPredStates :: Label -> AbstractEnv -> AbstractState
         joinPredStates label env =
             let preds = predecessors cfg label
