@@ -1,6 +1,5 @@
 # 50.054 Project Lab 1 (10%)
 
-## Deadline - 17 Nov 2024 23:59
 
 In this project, we will develop a compiler for the SIMP programming language.
 
