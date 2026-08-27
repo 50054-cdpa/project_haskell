@@ -1,6 +1,5 @@
 # 50.054 Project Lab 3 (15%)
 
-## Deadline - 15 Dec 2024 23:59
 
 In the previous lab, we completed the big step operational semantics and type inference for SIMP program.
 
